@@ -1,5 +1,7 @@
 package br.com.casadocodigo.loja.controllers;
 
+import java.util.concurrent.Callable;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.MailSender;
 import org.springframework.mail.SimpleMailMessage;
@@ -30,10 +32,9 @@ public class PagamentoController {
 	private MailSender sender;
 	
 	@RequestMapping(value="/finalizar", method=RequestMethod.POST)
-	public ModelAndView finalizar(@AuthenticationPrincipal Usuario usuario, RedirectAttributes model){
-		String uri = "http://book-payment.herokuapp.com/payment";
-		
-		try {
+	public Callable<ModelAndView> finalizar(@AuthenticationPrincipal Usuario usuario, RedirectAttributes model){
+		return () -> {		try {
+			String uri = "http://book-payment.herokuapp.com/payment";
 			String response = restTemplate.postForObject(uri, new DadosPagamento(carrinho.getTotal()), String.class);
 			model.addFlashAttribute("message", response);
 			System.out.println(response);
@@ -49,6 +50,8 @@ public class PagamentoController {
 			model.addFlashAttribute("message", "Valor maior que o permitido! Compra negada!");
 			return new ModelAndView("redirect:/");
 		}
+};
+	
 	}
 
 	private void enviaEmailCompraProduto(Usuario usuario) {
@@ -61,4 +64,5 @@ public class PagamentoController {
 		System.out.println("Envio de email foi desabilitado.");
 		//sender.send(email);
 	}
+
 }

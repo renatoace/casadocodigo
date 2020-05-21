@@ -20,10 +20,11 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 		http.authorizeRequests()
-			.antMatchers("/produtos/detalhes/**").permitAll()
 			.antMatchers("/produtos/**").hasRole("ADMIN")
-			.antMatchers("/carrinho/**").permitAll()	
+			.antMatchers("/produtos/detalhes/**").permitAll()
+			.antMatchers("/pedidos/**").hasRole("ADMIN")
 			.antMatchers("/pagamento/**").permitAll()
+			.antMatchers("/carrinho/**").permitAll()	
 			.antMatchers("/relatorio-produtos/**").permitAll()
 			.antMatchers("/").permitAll()
 			.antMatchers("/url-magica-maluca-oajksfbvad6584i57j54f9684nvi658efnoewfmnvowefnoeijn").permitAll()

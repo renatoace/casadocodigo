@@ -26,7 +26,6 @@ import br.com.casadocodigo.loja.models.TipoPreco;
 
 @Controller
 @RequestMapping("/relatorio-produtos")
-@Scope(value=WebApplicationContext.SCOPE_REQUEST)
 public class RelatorioProdutosController {
 	
 	@Autowired
