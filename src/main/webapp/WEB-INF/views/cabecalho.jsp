@@ -17,6 +17,14 @@
 						<li><a href="${s:mvcUrl('PC#listar').build() }"
 							rel="nofollow"> <fmt:message key="menu.lista_produtos" />
 						</a></li>
+						
+						<li><a href="${s:mvcUrl('PSC#listarPedidos').build() }"
+							rel="nofollow"> <fmt:message key="menu.lista_pedidos" />
+						</a></li>
+						
+						<li><a href="${s:mvcUrl('UC#listar').build() }"
+							rel="nofollow"> <fmt:message key="menu.usuarios" />
+						</a></li>
 
 						<li><a href="${s:mvcUrl('PC#form').build() }" rel="nofollow">
 								<fmt:message key="menu.cadastro_produtos" />
@@ -28,6 +36,7 @@
 							<s:message code="menu.carrinho"
 								arguments="${carrinhoCompras.quantidade}" />
 					</a></li>
+					
 					<li><a href="?locale=pt" rel="nofollow"> <fmt:message
 								key="menu.pt" />
 					</a></li>
